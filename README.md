@@ -1,4 +1,4 @@
-##Loan-Approval-Engine
+## Loan-Approval-Engine
 # ⚠ Academic Integrity Notice
 
 This repository is shared publicly for learning and portfolio review.
