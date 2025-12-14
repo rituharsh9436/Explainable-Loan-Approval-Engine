@@ -1,1 +1,8 @@
-# Loan-Approval-Engine
+##Loan-Approval-Engine
+# ⚠ Academic Integrity Notice
+
+This repository is shared publicly for learning and portfolio review.
+Submitting this project (or any substantial part of it) as your own
+academic work is a violation of academic integrity policies.
+
+Original work by: Harsh Bhardwaj
