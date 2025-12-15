@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+.env
+venv/
+.ipynb_checkpoints/
+
+# ML artifacts
+*.pkl
+*.joblib
+*.model
+
+# Frontend
+frontend/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
