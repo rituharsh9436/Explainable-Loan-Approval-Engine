@@ -4,6 +4,9 @@ def preprocess_input(data, feature_columns):
     df = pd.DataFrame([data])
 
     df['Total_Income'] = df['Applicant_Income'] + df['Coapplicant_Income']
+    if (df['Total_Income'] <= 0).any():
+        raise ValueError("Total income must be greater than zero.")
+
     df['Loan_to_Income_Ratio'] = df['Loan_Amount'] / df['Total_Income']
 
     df = pd.get_dummies(df)
