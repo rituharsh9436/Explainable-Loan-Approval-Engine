@@ -52,7 +52,6 @@ Libraries & Tools:
 - Pandas
 - Scikit-learn
 - Matplotlib
-- Uvicorn
 
 ## Project Structure
 
