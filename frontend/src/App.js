@@ -75,10 +75,14 @@ function App() {
       }
 
       if (limeResult.status === "fulfilled") {
-        setLime(limeResult.value);
-      } else {
-        setLimeError(limeResult.reason.message);
-      }
+
+  if (limeResult.status === "fulfilled") {
+  setLime(limeResult.value);
+} else {
+  setLimeError(limeResult.reason.message);
+}
+
+}
     } catch (requestError) {
       setError(requestError.message);
     } finally {
@@ -235,14 +239,21 @@ function App() {
                   SHAP Explanation
                 </button>
                 <button
-                  style={{
-                    ...styles.tab,
-                    ...(explanationTab === "lime" ? styles.tabActive : styles.tabInactive)
-                  }}
-                  onClick={() => setExplanationTab("lime")}
-                >
-                  LIME Explanation
-                </button>
+  style={{
+    ...styles.tab,
+    ...(explanationTab === "lime"
+      ? styles.tabActive
+      : styles.tabInactive)
+  }}
+  onClick={() => {
+    window.open(
+      `${API_BASE_URL}/lime-report`,
+      "_blank"
+    );
+  }}
+>
+  LIME Explanation
+</button>
               </div>
 
               {explanationTab === "shap" && (
@@ -328,7 +339,7 @@ const ExplanationMessage = ({ error, children }) => {
     return <p style={styles.warning}>{error}</p>;
   }
 
-  return children || <p style={styles.warning}>Explanation is not available.</p>;
+  return children || <p style={styles.warning}>Click on LIME Explanation.</p>;
 };
 
 const FeatureBars = ({ features }) => (

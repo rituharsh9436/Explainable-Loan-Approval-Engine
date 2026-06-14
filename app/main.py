@@ -1,6 +1,6 @@
 import pickle
 from pathlib import Path
-
+from fastapi.responses import FileResponse
 from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,7 +35,8 @@ try:
     with open(MODELS_DIR / "lime_explainer.pkl", "rb") as f:
         lime_explainer = pickle.load(f)
 except FileNotFoundError:
-    print("WARNING: lime_explainer.pkl not found. Run the notebook to generate it.")
+    pass
+    # print("WARNING: lime_explainer.pkl not found. Run the notebook to generate it.")
 
 def application_dict(data: LoanApplication):
     if hasattr(data, "model_dump"):
@@ -99,13 +100,20 @@ def explain_shap(data: LoanApplication):
         "shap_values": explanation
     }
 
+@app.get("/lime-report")
+def lime_report():
+    return FileResponse(
+        str(BASE_DIR / "lime_explanation.html"),
+        media_type="text/html"
+    )
+
 @app.post("/explain/lime")
 def explain_lime(data: LoanApplication):
     if lime_explainer is None:
-        raise HTTPException(
-            status_code=503,
-            detail="LIME explainer not available. Run the notebook to generate lime_explainer.pkl."
-        )
+        return {
+            "type": "html_report",
+            "url": "/lime-report"
+        }
     
     X = build_features(application_dict(data))
     lime_exp = lime_explainer.explain_instance(
