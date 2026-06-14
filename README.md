@@ -85,3 +85,5 @@ bash:
 cd frontend
 npm install
 npm start
+cd..
+uvicorn app.main:app --reload
