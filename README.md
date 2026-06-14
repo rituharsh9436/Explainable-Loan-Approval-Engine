@@ -80,12 +80,7 @@ Install backend dependencies:
 bash:
 pip install -r requirements.txt
 
-Run the backend server:
-bash:
-uvicorn app.main:app --reload
-
-
-Run the frontend:
+Run The Tool
 bash:
 cd frontend
 npm install
