@@ -13,3 +13,4 @@ alembic
 passlib[bcrypt]
 pyjwt
 python-multipart
+structlog
