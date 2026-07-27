@@ -1,0 +1,92 @@
+.result {
+  margin-top: 28px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.explanationSection {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabActive {
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: #ffffff;
+}
+
+.tabInactive {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.explanationContent {
+  margin-top: 12px;
+}
+
+.baseValue {
+  font-size: 14px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.warning {
+  margin: 0;
+  padding: 14px;
+  color: #ffd166;
+  background: rgba(255, 209, 102, 0.12);
+  border-radius: 8px;
+}
+
+.note {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 8px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featureRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.featureName {
+  font-weight: 500;
+  color: #00d4a3;
+  text-align: left;
+}
+
+.featureValue {
+  text-align: right;
+  font-weight: 500;
+  color: #ffffff;
+}

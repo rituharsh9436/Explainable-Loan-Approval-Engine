@@ -1,0 +1,42 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1f2a, #162d3a, #1f3b4d);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.container {
+  width: min(1100px, 100%);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.button {
+  margin-top: 28px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 18px;
+  padding: 14px;
+  background: rgba(255, 107, 107, 0.18);
+  border: 1px solid rgba(255, 107, 107, 0.45);
+  border-radius: 8px;
+}

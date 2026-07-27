@@ -7,3 +7,6 @@ xgboost
 shap
 lime
 joblib
+pydantic-settings
+sqlalchemy
+alembic

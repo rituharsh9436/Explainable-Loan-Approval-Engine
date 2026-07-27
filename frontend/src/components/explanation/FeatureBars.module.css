@@ -1,0 +1,42 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featureRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.featureName {
+  min-width: 180px;
+  font-weight: 500;
+  color: #00d4a3;
+  text-align: left;
+}
+
+.bar {
+  flex: 1;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.featureValue {
+  min-width: 70px;
+  text-align: right;
+  font-weight: 500;
+  color: #ffffff;
+}

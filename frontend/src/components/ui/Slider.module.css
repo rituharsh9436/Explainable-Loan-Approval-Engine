@@ -1,0 +1,21 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.field label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.field input[type="range"] {
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.field span {
+  font-size: 14px;
+  opacity: 0.9;
+}

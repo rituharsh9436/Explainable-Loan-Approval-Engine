@@ -26,3 +26,21 @@ class WhatIfSimulation(BaseModel):
     new_applicant_income: Optional[float] = Field(default=None, ge=0)
     new_loan_amount: Optional[float] = Field(default=None, gt=0)
     new_loan_term: Optional[float] = Field(default=None, gt=0)
+
+class PredictionResponse(BaseModel):
+    decision: str
+    approval_probability: float
+
+class ShapExplanationResponse(BaseModel):
+    base_value: float
+    shap_values: dict
+
+class LimeExplanationResponse(BaseModel):
+    lime_features: dict
+    prediction_probabilities: dict
+
+class SimulationResponse(BaseModel):
+    original_probability: float
+    new_probability: float
+    original_decision: str
+    new_decision: str
