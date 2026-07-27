@@ -52,7 +52,6 @@ Libraries & Tools:
 - Pandas
 - Scikit-learn
 - Matplotlib
-- Uvicorn
 
 ## Project Structure
 
@@ -85,3 +84,5 @@ bash:
 cd frontend
 npm install
 npm start
+cd..
+uvicorn app.main:app --reload
