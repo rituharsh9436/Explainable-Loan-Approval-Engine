@@ -9,7 +9,8 @@ from app.schemas.prediction import (
     SimulationResponse
 )
 from app.services.prediction_service import PredictionService
-from app.api.dependencies import get_prediction_service
+from app.api.dependencies import get_prediction_service, get_current_active_user
+from app.models.user import User
 from app.core.config import settings
 
 router = APIRouter()
@@ -17,7 +18,8 @@ router = APIRouter()
 @router.post("/predict", response_model=PredictionResponse)
 def predict_loan(
     data: LoanApplication,
-    service: PredictionService = Depends(get_prediction_service)
+    service: PredictionService = Depends(get_prediction_service),
+    current_user: User = Depends(get_current_active_user)
 ):
     decision, prob = service.predict(data.model_dump())
     return PredictionResponse(decision=decision, approval_probability=prob)
@@ -25,7 +27,8 @@ def predict_loan(
 @router.post("/explain/shap", response_model=ShapExplanationResponse)
 def explain_shap(
     data: LoanApplication,
-    service: PredictionService = Depends(get_prediction_service)
+    service: PredictionService = Depends(get_prediction_service),
+    current_user: User = Depends(get_current_active_user)
 ):
     base_value, shap_values = service.explain_shap(data.model_dump())
     return ShapExplanationResponse(base_value=base_value, shap_values=shap_values)
@@ -33,7 +36,8 @@ def explain_shap(
 @router.post("/explain/lime")
 def explain_lime(
     data: LoanApplication,
-    service: PredictionService = Depends(get_prediction_service)
+    service: PredictionService = Depends(get_prediction_service),
+    current_user: User = Depends(get_current_active_user)
 ):
     return service.explain_lime(data.model_dump())
 
@@ -47,7 +51,8 @@ def lime_report():
 @router.post("/simulate", response_model=SimulationResponse)
 def simulate_what_if(
     sim: WhatIfSimulation,
-    service: PredictionService = Depends(get_prediction_service)
+    service: PredictionService = Depends(get_prediction_service),
+    current_user: User = Depends(get_current_active_user)
 ):
     sim_params = {
         "new_applicant_income": sim.new_applicant_income,
