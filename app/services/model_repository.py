@@ -22,9 +22,12 @@ class ModelRepository:
 
     def _load_models(self):
         try:
-            self.model = joblib.load(settings.MODELS_DIR / "xgboost_loan_model.pkl")
-            self.shap_explainer = joblib.load(settings.MODELS_DIR / "shap_explainer.pkl")
-            self.feature_columns = joblib.load(settings.MODELS_DIR / "feature_columns.pkl")
+            self.model = joblib.load(settings.MODELS_DIR / "loan_model_v2.pkl")
+            self.feature_columns = joblib.load(settings.MODELS_DIR / "feature_columns_v2.pkl")
+            
+            import shap
+            # Initialize SHAP explainer from the loaded model directly
+            self.shap_explainer = shap.TreeExplainer(self.model)
             
             # LIME is optional
             self.lime_explainer = None

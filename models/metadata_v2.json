@@ -1,0 +1,28 @@
+{
+    "version": "v2",
+    "algorithm": "RandomForest",
+    "training_date": "2026-07-27T19:43:44.841908Z",
+    "dataset_size": 4269,
+    "best_parameters": {
+        "n_estimators": 182,
+        "max_depth": 9,
+        "learning_rate": 0.017528968791743166,
+        "subsample": 0.9973916663409758,
+        "colsample_bytree": 0.7806970710668013,
+        "min_child_weight": 1
+    },
+    "metrics": {
+        "accuracy": 0.9976580796252927,
+        "precision": 1.0,
+        "recall": 0.9962335216572504,
+        "f1_score": 0.9981132075471698,
+        "roc_auc": 0.9999650172290148,
+        "pr_auc": 0.999978820159413,
+        "confusion_matrix": {
+            "tn": 323,
+            "fp": 0,
+            "fn": 2,
+            "tp": 529
+        }
+    }
+}
