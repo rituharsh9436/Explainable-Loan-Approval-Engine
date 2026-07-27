@@ -1,10 +1,14 @@
 import numpy as np
 import pandas as pd
+import time
+import structlog
 from typing import Dict, Any, Tuple
 from app.core.config import settings
 from app.services.model_repository import ModelRepository
 from app.services.feature_engineering import preprocess_input
 from app.core.exceptions import PredictionError
+
+logger = structlog.get_logger(__name__)
 
 class PredictionService:
     def __init__(self, model_repo: ModelRepository):
@@ -16,12 +20,23 @@ class PredictionService:
         return "Approved" if probability >= settings.APPROVAL_THRESHOLD else "Rejected"
 
     def predict(self, application_data: Dict[str, Any]) -> Tuple[str, float]:
+        start_time = time.perf_counter()
         try:
             X = preprocess_input(application_data, self.feature_columns)
             prob = self.model.predict_proba(X)[0][1]
             decision = self._decision_from_probability(prob)
+            
+            inference_time_ms = (time.perf_counter() - start_time) * 1000
+            
+            logger.info("prediction_completed", 
+                        decision=decision, 
+                        probability=round(float(prob), 3), 
+                        inference_time_ms=round(inference_time_ms, 2),
+                        inputs=application_data)
+            
             return decision, round(float(prob), 3)
         except Exception as e:
+            logger.error("prediction_failed", error=str(e), inputs=application_data)
             raise PredictionError(f"Prediction failed: {str(e)}")
 
     def explain_shap(self, application_data: Dict[str, Any]) -> Tuple[float, Dict[str, float]]:

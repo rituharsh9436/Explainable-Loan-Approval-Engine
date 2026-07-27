@@ -3,9 +3,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from app.api.v1.api import api_router
 from app.core.config import settings
+from app.core.logging import setup_logging
+from app.api.middleware import LoggingMiddleware
 from app.core.exceptions import PredictionError, FeatureEngineeringError, ModelLoadError
 
-app = FastAPI(title=settings.PROJECT_NAME)
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    openapi_url=f"{settings.API_V1_STR}/openapi.json"
+)
+
+# Initialize structured logging
+setup_logging()
+
+# Add logging middleware
+app.add_middleware(LoggingMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
