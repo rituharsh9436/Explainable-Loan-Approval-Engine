@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loan_approval_backend
+    ports:
+      - "8000:8000"
+    environment:
+      # Use an absolute path inside the container data directory for SQLite
+      - SQLALCHEMY_DATABASE_URI=sqlite:///./data/loan_engine.db
+      - SECRET_KEY=your-super-secret-key-change-in-production
+    volumes:
+      # Persist the sqlite database
+      - ./data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Note: In a real production setup with Nginx serving static files, 
+        # React env vars are baked in at build time. 
+        # If accessing the frontend via localhost, the API is at localhost:8000.
+        # If this is deployed on a remote server, this URL must be the public IP/domain of the backend.
+        - REACT_APP_API_BASE_URL=http://localhost:8000
+    container_name: loan_approval_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
